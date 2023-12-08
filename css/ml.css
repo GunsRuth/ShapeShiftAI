@@ -1,0 +1,47 @@
+.rules-banner{
+    color: white;
+    background-color: #e2bad5;
+    /* height: 20vh; */
+    /* width: 100%;   */
+    /* margin-top: 5vh;   */
+    display: flex;
+    flex-direction: row ;
+    justify-content: center;
+    align-items: center;
+}
+.top-banner{
+    color: white;
+    background-color: #e2bad5;
+    height: 20vh;
+    width: 100%;  
+    margin-top: 5vh;  
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+h1{
+    color: white; 
+    font-weight: 300;
+}
+.left{
+    margin-right: 25px;
+}
+.right{
+    margin-left: 25px ;
+}
+.bgcl{
+ 
+
+    border-radius: 4px;
+}
+
+#postureSelect{
+    background-color: #d291bc;
+    height: 50px;
+    width: 230px;
+    color: rgb(237, 247, 248);
+    border-color: #d291bc;
+    outline: none;
+    border-radius: 5px;
+}
