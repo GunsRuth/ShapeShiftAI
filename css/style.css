@@ -7272,7 +7272,7 @@ body {
   font-size: 16px;
   line-height: 1.8;
   font-weight: 400;
-  color: #b3b3b3; }
+  color: #393535; }
   body.menu-show {
     overflow: hidden;
     position: fixed;
@@ -8125,7 +8125,7 @@ textarea.form-control {
     font-size: 16px;
     display: block;
     margin-bottom: 5px;
-    color: #b3b3b3;
+    color: #393535;
     line-height: 1;
     z-index: 1;
     font-weight: 300;
@@ -8309,7 +8309,7 @@ textarea.form-control {
     line-height: 1; }
   .blog-entry span.yr, .blog-entry span.mos {
     display: block;
-    color: #b3b3b3; }
+    color: #393535; }
 
 .block-23 ul {
   padding: 0; }
