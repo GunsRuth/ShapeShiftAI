@@ -130,9 +130,8 @@ function setup() {
 
 
     img = createImg(`Yoga-Postures/Models/Images/${indexOfCurrentPosture}.png`);
-    img.size(640, 480);
+    img.size(480, 640);
     img.parent(container);
-
     poseInfoDiv.html(`Current Pose: ${Postures[indexOfCurrentPosture]}`);
 
     // Create a new div for image index and append it to the container
@@ -143,7 +142,7 @@ function setup() {
     imageIndexDiv.style('background-color', 'rgb(226,186,213');
     imageIndexDiv.style('padding', '5px');
     imageIndexDiv.style('text-align', 'center');
-    imageIndexDiv.style('font-size', '260px');
+    imageIndexDiv.style('font-size', '200px');
 
     imageIndexDiv.style('height','640');
     imageIndexDiv.style('width','640px');
