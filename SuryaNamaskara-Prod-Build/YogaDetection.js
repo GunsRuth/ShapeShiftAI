@@ -2,6 +2,8 @@ let poseNet;
 let model1;
 let model2;
 let model3;
+let img;
+let imageIndexDiv;
 
 let checkerr = true;
 let musicStarted = false;
@@ -42,7 +44,7 @@ let indexOfCurrentPosture = 0;
 let currentPos = "NO Posture";
 
 
-let currPoseCount = 10;  // User should stand in this position to complete the step
+let currPoseCount = 12;  // User should stand in this position to complete the step
 let yogaDetection = 0;
 
 let sound;
@@ -66,6 +68,12 @@ function Stop() {
 }
 
 function setup() {
+
+    const container = createDiv();
+    container.style('display', 'flex');
+
+
+
 
 
     poseNet = ml5.poseNet();
@@ -106,11 +114,13 @@ function setup() {
 
     video = createCapture(VIDEO);
     video.size(640, 480);
+    video.parent(container);
 
     video.hide();
 
     // Set up the canvas for pose detection
     const poseCanvas = createCanvas(640, 480);
+    poseCanvas.parent(container);
 
 
     poseNet = ml5.poseNet(video, () => {
@@ -129,14 +139,35 @@ function setup() {
 
     backgroundMusic = document.getElementById('backgroundMusic');
     poseInfoDiv = createDiv();
-    poseInfoDiv.style('background-color', 'blue');
+    poseInfoDiv.style('background-color', 'rgb(226,186,213)');
     poseInfoDiv.style('color', 'white');
     poseInfoDiv.style('padding', '10px');
     poseInfoDiv.style('text-align', 'center');
-    poseInfoDiv.style('font-size', '24px');
+    poseInfoDiv.style('font-size', '75px');
     poseInfoDiv.style('font-weight', 'bold');
-    poseInfoDiv.style('margin-top', '20px');
-    poseInfoDiv.html(`Current Pose: ${Postures[indexOfCurrentPosture]}<br>Pose Timer: ${currPoseCount}`);
+    poseInfoDiv.style('height','230px');
+
+    poseInfoDiv.html(`Current Pose: ${Postures[indexOfCurrentPosture]}`);
+
+    img = createImg(`SuryaNamaskara-Prod-Build/Models/Images/${indexOfCurrentPosture}.png`);
+    img.size(640, 480);
+    img.parent(container); // Set the parent of the image to the container
+
+
+    imageIndexDiv = createDiv(`${currPoseCount}`);
+    imageIndexDiv.parent(container);
+
+    // Apply CSS styles to imageIndexDiv
+    imageIndexDiv.style('background-color', 'rgb(226,186,213');
+    imageIndexDiv.style('padding', '5px');
+    imageIndexDiv.style('text-align', 'center');
+    imageIndexDiv.style('font-size', '260px');
+
+    imageIndexDiv.style('height','640');
+    imageIndexDiv.style('width','640px');
+    imageIndexDiv.style('font-weight','600');
+
+    imageIndexDiv.style('font-family','Montserrat\', sans-serif');
 
 
 }
@@ -217,6 +248,7 @@ function classifyPose() {
         if (indexOfCurrentPosture === 12  ) {
             console.log("Completed the SuryaNamaskar Session");
             poseInfoDiv.html(`All Postures Done Congratulations`);
+            img.elt.src='SuryaNamaskara-Prod-Build/Models/Images/12.png';
 
             // @ Dhananjay Add the request to send the Data to Backend -> Session Data Storage
             alert("All Postures Completed");
@@ -242,11 +274,17 @@ function classifyPose() {
 
             }, 500);
             flag = false;
-            currPoseCount = 10;
+            currPoseCount = 12;
             indexOfCurrentPosture++;
+            img.elt.src=`SuryaNamaskara-Prod-Build/Models/Images/${indexOfCurrentPosture}.png`;
+            poseInfoDiv.html(`Current Pose: ${Postures[indexOfCurrentPosture]}`);
+            imageIndexDiv.elt.innerText=currPoseCount;
+
+            // user can see what to perform next and wait,
             setTimeout(() => {
                 sound.stop();
                 flag = true;
+
                 backgroundMusic.play(); //   ** Add Loop Here
                 checkerr = true;
                 BoxBool=true;
@@ -332,7 +370,8 @@ function classifyPose() {
 
             if (currPoseCount >= 0 && GlobalBool && BoxBool) {
 
-                poseInfoDiv.html(`Current Pose: ${Postures[indexOfCurrentPosture]}<br>Pose Timer: ${currPoseCount}`);
+                poseInfoDiv.html(`Current Pose: ${Postures[indexOfCurrentPosture]}`);
+                imageIndexDiv.elt.innerText=currPoseCount;
             }
             setTimeout(() => { // so we wait it 1 sec for next detection.
                 isClassifying = true;
@@ -364,7 +403,7 @@ function classifyPose() {
             currentModel = model1;
         }
 // Add the array as Model Array Indexing .
-        currPoseCount=10;
+        currPoseCount=12;
         checkerr = true;
         flag = true;
         isClassifying = true;

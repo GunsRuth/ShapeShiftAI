@@ -12,6 +12,9 @@ let model1;
 let model2;
 let model3;
 let model4;
+let imageIndexDiv;
+
+let img;
 let model5;
 let currentModel;
 let switchInterval = 250; // Switch interval in milliseconds
@@ -49,12 +52,12 @@ function changePostureModel() {
 
 
 
-    poseInfoDiv.html(`CurrenntPosture: ${Postures[selectedPosture]}<br>Pose Counter: 0`);
-    currPoseCount = 0;
-
-    flag = false;
     selectedPosture = document.getElementById("postureSelect").value;
     if (selectedPosture !== "") {
+        img.elt.src = `Exercise-Postures-Custom/Models/Images/${selectedPosture}.png`;
+        poseInfoDiv.html(`Current Posture: ${Postures[selectedPosture]}`);
+        currPoseCount = 0;
+        flag = false;
         switchModels();
     }
 }
@@ -65,13 +68,18 @@ function  endPosture(){
 }
 
 function  Start(){
+    alert("Choose a Posture from the drop Down");
+
     // Dhananjay can Do anything he wants to do.
+    img.elt.src = `Exercise-Postures-Custom/Models/Images/0.png`;
 }
 function  Stop(){
 
-    poseInfoDiv.html(`CurrentPosture: No Posture Selected<br>Pose Counter: 0`);
+    poseInfoDiv.html(`CurrentPosture: No Posture Selected`);
+    imageIndexDiv.elt.innerText = `0`;
     flag = false;
     document.getElementById("postureSelect").value = "Select One Posture";
+    img.elt.src = `Exercise-Postures-Custom/Models/Images/6.png`;
     alert("You have stopped the exercise  , Select New Exercise to restart");
 
 }
@@ -79,7 +87,8 @@ function  Stop(){
 
     function setup() {
         // Create a poseNet instance
-
+        const container = createDiv();
+        container.style('display', 'flex');
 
         poseNet = ml5.poseNet();
 
@@ -146,12 +155,13 @@ function  Stop(){
 
         video = createCapture(VIDEO);
         video.size(640, 480);
+        video.parent(container); // Set the parent of the video to the container
 
         video.hide();
 
         // Set up the canvas for pose detection
         const poseCanvas = createCanvas(640, 480);
-
+        poseCanvas.parent(container);
 
         poseNet = ml5.poseNet(video, () => {
             console.log("Model Ready to so");
@@ -164,15 +174,36 @@ function  Stop(){
             }
         });
         poseInfoDiv = createDiv();
-        poseInfoDiv.style('background-color', 'blue');
+
+        poseInfoDiv.style('background-color', 'rgb(226,186,213)');
         poseInfoDiv.style('color', 'white');
         poseInfoDiv.style('padding', '10px');
         poseInfoDiv.style('text-align', 'center');
-        poseInfoDiv.style('font-size', '24px'); // Adjust the font size
-        poseInfoDiv.style('font-weight', 'bold'); // Make the text bold
-        poseInfoDiv.style('margin-top', '20px');
+        poseInfoDiv.style('font-size', '75px');
+        poseInfoDiv.style('font-weight', 'bold');
+        poseInfoDiv.style('height','230px');
+
 
         // Set a timer to switch models after a certain interval
+
+      img = createImg(`Exercise-Postures-Custom/Models/Images/${selectedPosture}.png`); // Set the path to your image
+        img.size(640, 480);
+        img.parent(container); // Set the parent of the image to the container
+
+        imageIndexDiv = createDiv(`${currPoseCount}`);
+        imageIndexDiv.parent(container);
+
+        // Apply CSS styles to imageIndexDiv
+        imageIndexDiv.style('background-color', 'rgb(226,186,213');
+        imageIndexDiv.style('padding', '5px');
+        imageIndexDiv.style('text-align', 'center');
+        imageIndexDiv.style('font-size', '260px');
+
+        imageIndexDiv.style('height','640');
+        imageIndexDiv.style('width','640px');
+        imageIndexDiv.style('font-weight','600');
+
+        imageIndexDiv.style('font-family','Montserrat\', sans-serif');
 
     }
 
@@ -194,8 +225,7 @@ function  Stop(){
         fill(255);
         textSize(24);
         textAlign(CENTER, TOP);
-        text(`Current Pose: ${currentLabel}`, 10000, 100);
-        text(`Pose Timer: ${switchInterval / 1000}`, width / 2, 50);
+
     }
 
     function drawPose() {
@@ -309,7 +339,9 @@ function  Stop(){
 
             if (currentPos
             )
-                poseInfoDiv.html(`Current Pose: ${Postures[selectedPosture]}<br>Pose Counter: ${currPoseCount}`);
+                poseInfoDiv.html(`Current Pose: ${Postures[selectedPosture]}`);
+            console.log(currPoseCount);
+            imageIndexDiv.elt.innerText = `${currPoseCount}`;
 
 
             setTimeout(() => {
