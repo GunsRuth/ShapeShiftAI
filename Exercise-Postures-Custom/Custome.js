@@ -73,6 +73,32 @@ function  Start(){
     // Dhananjay can Do anything he wants to do.
     img.elt.src = `Exercise-Postures-Custom/Models/Images/0.png`;
 }
+function displayAlert(message, alertType) {
+    // Create the alert element
+    const alertElement = document.createElement('div');
+    alertElement.className = `alert alert-${alertType} alert-dismissible fade show my-5 m-6 `;
+    alertElement.innerHTML = `
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        ${message}
+    `;
+
+    // Append the alert to the alert container
+    const alertContainer = document.getElementById('alertContainer');
+    alertContainer.innerHTML = ''; // Clear previous alerts
+    alertContainer.appendChild(alertElement);
+
+    // Auto-dismiss the alert after a few seconds (optional)
+    setTimeout(() => {
+        alertElement.classList.add('fade');
+    }, 5000); // Adjust the duration as needed
+}
+  
+
+function getCookieValue(name) {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(";").shift();
+}
 function  Stop(){
 
     poseInfoDiv.html(`CurrentPosture: No Posture Selected`);
@@ -80,7 +106,47 @@ function  Stop(){
     flag = false;
     document.getElementById("postureSelect").value = "Select One Posture";
     img.elt.src = `Exercise-Postures-Custom/Models/Images/6.png`;
+
+    if (currPoseCount>0 && selectedPosture!=='0') {
+        const usernameCookieValue = getCookieValue("username");
+
+        const postData = {
+            username:usernameCookieValue,
+            exercise_name:Postures[selectedPosture],
+            count:currPoseCount
+        };
+      
+        
+        fetch('http://127.0.0.1:8000/report/exerciseReport', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(postData)
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+           console.log("Request Posted");
+    
+            return response.json();
+        })
+        .then(data => {
+            
+            
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            
+        });
+    }
+      
+
+
     alert("You have stopped the exercise  , Select New Exercise to restart");
+
+
 
 }
 

@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>ShapeShiftAI</title>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <link
+      href="https://fonts.googleapis.com/css?family=Work+Sans:100,200,300,400,500,600,700,800,900"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="css/open-iconic-bootstrap.min.css" />
+    <link rel="stylesheet" href="css/animate.css" />
+
+    <link rel="stylesheet" href="css/owl.carousel.min.css" />
+    <link rel="stylesheet" href="css/owl.theme.default.min.css" />
+    <link rel="stylesheet" href="css/magnific-popup.css" />
+
+    <link rel="stylesheet" href="css/aos.css" />
+
+    <link rel="stylesheet" href="css/ionicons.min.css" />
+
+    <link rel="stylesheet" href="css/bootstrap-datepicker.css" />
+    <link rel="stylesheet" href="css/jquery.timepicker.css" />
+
+    <link rel="stylesheet" href="css/flaticon.css" />
+    <link rel="stylesheet" href="css/icomoon.css" />
+    <link rel="stylesheet" href="css/style.css" />
+
+    <!--  -->
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+
+    <!--  -->
+  </head>
+  <style>
+    .heding {
+      text-align: center;
+    }
+    html,
+    body,
+    .intro {
+      height: 100%;
+      width: 100%;
+    }
+
+    table td,
+    table th {
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+
+    thead th {
+      color: #fff;
+    }
+
+    .card {
+      border-radius: 0.5rem;
+    }
+
+    .table-scroll {
+      border-radius: 0.5rem;
+    }
+
+    .table-scroll table thead th {
+      font-size: 1.25rem;
+    }
+    thead {
+      top: 0;
+      position: sticky;
+    }
+  </style>
+  <body>
+    <nav
+      class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light"
+      id="ftco-navbar"
+    >
+      <div class="container">
+        <a class="navbar-brand" href="index.html">ShapeShiftAI</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#ftco-nav"
+          aria-controls="ftco-nav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="oi oi-menu"></span> Menu
+        </button>
+        <div class="collapse navbar-collapse" id="ftco-nav">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+              <a href="index.html" class="nav-link">Home</a>
+            </li>
+            <li class="nav-item">
+              <a href="guide.html" class="nav-link">Guide</a>
+            </li>
+            <li class="nav-item">
+              <a href="schedule.html" class="nav-link">Schedule</a>
+            </li>
+            <li class="nav-item">
+              <a href="about.html" class="nav-link">About</a>
+            </li>
+            <li class="nav-item">
+              <a href="contact.html" class="nav-link">Contact</a>
+            </li>
+            <li class="nav-item">
+              <a href="services.html" class="nav-link">Services</a>
+            </li>
+            <li class="nav-item">
+              <a href="report.html" class="nav-link">Report</a>
+            </li>
+            <li class="nav-item">
+              <a href="login.html" class="nav-link">Login</a>
+            </li>
+            <li class="nav-item">
+              <a href="register.html" class="nav-link">Register</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- END nav -->
+
+    <section class="intro">
+      <div class="bg-image h-100" style="background-color: #f5f7fa">
+        <div class="mask d-flex align-items-center h-100">
+          <div class="container">
+            <h1 class="heding">Exercise Report</h1>
+            <div class="row justify-content-center">
+              <div class="col-12">
+                <div class="card">
+                  <div class="card-body p-0">
+                    <div
+                      class="table-responsive table-scroll"
+                      data-mdb-perfect-scrollbar="true"
+                      style="position: relative; height: 700px"
+                    >
+                      <table class="table table-striped mb-0">
+                        <thead style="background-color: #b3e1e7">
+                          <tr>
+                            <th scope="col">Exercise Name</th>
+                            <th scope="col">Count</th>
+                            <th scope="col">Calories Burned</th>
+                            <th scope="col">Date</th>
+                            <th scope="col">Time</th>
+                          </tr>
+                        </thead>
+                        <tbody id="tableBody"></tbody>
+                        
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <section class="intro">
+      <div class="bg-image h-100" style="background-color: #f5f7fa">
+        <div class="mask d-flex align-items-center h-100">
+          <div class="container">
+            <h1 class="heding">Posture Report</h1>
+            <div class="row justify-content-center">
+              <div class="col-12">
+                <div class="card">
+                  <div class="card-body p-0">
+                    <div
+                      class="table-responsive table-scroll"
+                      data-mdb-perfect-scrollbar="true"
+                      style="position: relative; height: 700px"
+                    >
+                      <table class="table table-striped mb-0">
+                        <thead style="background-color: #b3e1e7">
+                          <tr>
+                            <th scope="col">Posture Name</th>
+                            <th scope="col">Duration</th>
+                            <th scope="col">Calories Burned</th>
+                            <th scope="col">Date</th>
+                            <th scope="col">Time</th>
+                          </tr>
+                        </thead>
+                        <tbody id="tableBody2"></tbody>
+                        
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="ftco-footer ftco-section img">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row mb-5">
+          <div class="col-lg-3 col-md-6 mb-5 mb-md-5 ftco-animate">
+            <div class="ftco-footer-widget mb-4">
+              <h1 class="logo">ShapeShiftAI</h1>
+            </div>
+          </div>
+          <div class="col-lg col-md-6 mb-5 mb-md-5 ftco-animate"></div>
+          <div class="col-lg-3 col-md-6 mb-5 mb-md-5">
+            <div class="ftco-footer-widget mb-4">
+              <ul
+                class="ftco-footer-social list-unstyled float-md-left float-lft"
+              >
+                <li class="ftco-animate">
+                  <a href="#"><span class="icon-twitter"></span></a>
+                </li>
+                <li class="ftco-animate">
+                  <a href="#"><span class="icon-facebook"></span></a>
+                </li>
+                <li class="ftco-animate">
+                  <a href="#"><span class="icon-instagram"></span></a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 text-center">
+            <p>
+              Copyright &copy;
+              <script>
+                document.write(new Date().getFullYear());
+              </script>
+              All rights reserved |
+              <i class="icon-heart" aria-hidden="true"></i> by Dhananjay
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- loader -->
+    <div id="ftco-loader" class="show fullscreen">
+      <svg class="circular" width="48px" height="48px">
+        <circle
+          class="path-bg"
+          cx="24"
+          cy="24"
+          r="22"
+          fill="none"
+          stroke-width="4"
+          stroke="#eeeeee"
+        />
+        <circle
+          class="path"
+          cx="24"
+          cy="24"
+          r="22"
+          fill="none"
+          stroke-width="4"
+          stroke-miterlimit="10"
+          stroke="#F96D00"
+        />
+      </svg>
+    </div>
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery-migrate-3.0.1.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.easing.1.3.js"></script>
+    <script src="js/jquery.waypoints.min.js"></script>
+    <script src="js/jquery.stellar.min.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/jquery.magnific-popup.min.js"></script>
+    <script src="js/aos.js"></script>
+    <script src="js/jquery.animateNumber.min.js"></script>
+    <script src="js/bootstrap-datepicker.js"></script>
+    <script src="js/jquery.timepicker.min.js"></script>
+    <script src="js/scrollax.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+    <script src="js/google-map.js"></script>
+    <script src="js/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+      function getCookieValue(name) {
+        const value = `; ${document.cookie}`;
+        const parts = value.split(`; ${name}=`);
+        if (parts.length === 2) return parts.pop().split(";").shift();
+      }
+      
+      const usernameCookieValue = getCookieValue("user_id");
+
+      if (usernameCookieValue) {
+        fetch(
+          `http://127.0.0.1:8000/report/my_ExerciseReport/${usernameCookieValue}`
+        )
+          .then((response) => response.json())
+          .then((data) => {
+            buildTable1(data);
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+          }); 
+          function buildTable1(data) {
+            const tableBody = document.getElementById('tableBody');
+            data.forEach((item) => {
+              const row = document.createElement("tr");
+              const dateString = item.createdAt;
+              const parsedDate = new Date(dateString);
+    
+              const formattedDate = parsedDate.toLocaleString('en-US', {
+                month: 'long',
+                day: 'numeric',
+                year: 'numeric',
+               
+              });
+              const formattedTime = parsedDate.toLocaleString('en-US', {
+                hour: 'numeric',
+                minute: 'numeric',
+                hour12: true,
+               
+              });
+              const date =formattedDate;
+              const time =formattedTime;
+              row.innerHTML = `
+            <td>${item.exercise_name}</td>
+            <td>${item.count}</td>
+            <td>${item.calorie}</td>
+            <td>${date}</td>
+            <td>${time}</td>
+            
+          `;
+              tableBody.appendChild(row);
+            });
+          }
+        
+        fetch(
+          `http://127.0.0.1:8000/report/my_PoseReport/${usernameCookieValue}`
+        )
+          .then((response) => response.json())
+          .then((data) => {
+            buildTable2(data);
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+          });
+
+          function buildTable2(data) {
+            const tableBody = document.getElementById('tableBody2');
+            data.forEach((item) => {
+              const row = document.createElement("tr");
+              const dateString = item.createdAt;
+              const parsedDate = new Date(dateString);
+    
+              const formattedDate = parsedDate.toLocaleString('en-US', {
+                month: 'long',
+                day: 'numeric',
+                year: 'numeric',
+               
+              });
+              const formattedTime = parsedDate.toLocaleString('en-US', {
+                hour: 'numeric',
+                minute: 'numeric',
+                hour12: true,
+               
+              });
+              const date =formattedDate;
+              const time =formattedTime;
+              row.innerHTML = `
+            <td>${item.pose_name}</td>
+            <td>${item.time}</td>
+            <td>${item.calorie}</td>
+            <td>${date}</td>
+            <td>${time}</td>
+            
+          `;
+              tableBody.appendChild(row);
+            });
+          }
+        //table -2 ba;ow
+        
+      }
+    </script>
+  </body>
+</html>

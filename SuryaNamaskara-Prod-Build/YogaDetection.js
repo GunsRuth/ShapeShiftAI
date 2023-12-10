@@ -236,9 +236,72 @@ function drawPose() {
 function gotPoses(results) {
 
 }
+function displayAlert(message, alertType) {
+    // Create the alert element
+    const alertElement = document.createElement('div');
+    alertElement.className = `alert alert-${alertType} alert-dismissible fade show my-5 m-6 `;
+    alertElement.innerHTML = `
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        ${message}
+    `;
+
+    // Append the alert to the alert container
+    const alertContainer = document.getElementById('alertContainer');
+    alertContainer.innerHTML = ''; // Clear previous alerts
+    alertContainer.appendChild(alertElement);
+
+    // Auto-dismiss the alert after a few seconds (optional)
+    setTimeout(() => {
+        alertElement.classList.add('fade');
+    }, 5000); // Adjust the duration as needed
+}
+  
+
+function getCookieValue(name) {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(";").shift();
+  }
 function  Final(){
     // @ Dhananjay can Send Backend Data from Here.
     // Like Sending the session data.
+    // Wow Omkar Appreciate it
+    // keep doing this bro.
+    
+    const usernameCookieValue = getCookieValue("username");
+
+    const postData = {
+        username:usernameCookieValue,
+        pose_name:"Surya Namaskar",
+        time:360
+    };
+  
+    
+    fetch('http://127.0.0.1:8000/report/poseReport', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(postData)
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+       
+
+        return response.json();
+    })
+    .then(data => {
+        
+        
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        
+    });
+    
+    
 
 }
 function classifyPose() {
