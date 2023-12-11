@@ -458,7 +458,12 @@ function classifyPose() {
 
             } else {
                 if(errCount--===0){
+                    backgroundMusic.pause();
+                    setTimeout(()=>{
+                          backgroundMusic.play();
+                    },4000);
                     voice.play();
+
                     hint.html(hints[indexOfCurrentPosture][Math.floor(Math.random()*hints[indexOfCurrentPosture].length)]);
                     errCount = 8;
                 }
