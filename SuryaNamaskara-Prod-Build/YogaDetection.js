@@ -15,6 +15,8 @@ let isClassifying = true; // Flag to control classification
 let video;
 let skeleton;
 let pose;
+let errCount = 8;
+let voice;
 
 
 let GlobalBool = true;
@@ -35,6 +37,20 @@ const Postures = {
     '11': "Tadasana",
 
 };
+const hints = [
+    ["Stand at the edge of your mat, keep your feet together and balance your weight equally on both feet", "As you breathe in, lift both arms up from the sides, and as you exhale, bring your palms together in front of the chest in a prayer position"],
+    ["Breathing in, lift the arms up and back, keeping the biceps close to the ears", "You may push the pelvis forward a little bit", "Ensure you're reaching up with the fingers rather than trying to bend backward"],
+    ["You may bend the knees, if necessary, to bring the palms down to the floor", "It's a good idea to keep the hands fixed in this position and not move them henceforth until we finish the sequence"],
+    ["Ensure that the left foot is exactly in between the palms", "Push your right leg back, as far back as possible"],
+    ["Keep your arms perpendicular to the floor", "Take the left leg back and bring the whole body in a straight line"],
+    ["The two hands, two feet, two knees, chest and chin (eight parts of the body) should touch the floor", "Raise your posterior a little bit"],
+    ["As you inhale, make a gentle effort to push the chest forward; as you exhale, make a gentle effort to push the navel down", "Tuck the toes under", "Ensure you’re stretching just as much as you can and not forcing your body"],
+    ["If possible, try and keep the heels on the ground and make a gentle effort to lift the tailbone up, going deeper into the stretch"],
+    ["Place the right foot exactly between the two hands and the right calf perpendicular to the floor", "Make a gentle effort to push the hips down towards the floor, to deepen the stretch"],
+    ["Gently straighten the knees", "Try and touch your nose to the knees"],
+    ["Ensure that your biceps are beside your ears", "The idea is to stretch up more rather than stretching backward"],
+    ["first straighten the body, then bring the arms down", " Relax in this position and observe the sensations in your body"]
+];
 const array = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'd', 'c', 'b', 'a'];
 
 // we will have 12 postures and three models to detect them,
@@ -54,6 +70,7 @@ let flag = true;
 
 function preload() {
     sound = createAudio('SuryaNamaskara-Prod-Build/Models/Chill - Cool Down Harmony.mp3');
+    voice = createAudio("voices/voice1.wav");
 }
 
 
@@ -71,7 +88,7 @@ function setup() {
 
     const container = createDiv();
     container.style('display', 'flex');
-
+    
 
 
 
@@ -138,6 +155,7 @@ function setup() {
     // @ Dhananjay You Can Remove the below and give your styles.
 
     backgroundMusic = document.getElementById('backgroundMusic');
+    hint = createDiv();
     poseInfoDiv = createDiv();
     poseInfoDiv.style('background-color', 'rgb(226,186,213)');
     poseInfoDiv.style('color', 'white');
@@ -169,6 +187,13 @@ function setup() {
 
     imageIndexDiv.style('font-family','Montserrat\', sans-serif');
 
+    hint.style('background-color', 'rgb(226,186,213)');
+    hint.style('color', 'white');
+    // hint.style('padding', '10px');
+    hint.style('text-align', 'center');
+    hint.style('font-size', '40px');
+    hint.style('font-weight', 'bold');
+    hint.style("margin-top", "0px");
 
 }
 
@@ -327,6 +352,8 @@ function classifyPose() {
 
         if (currPoseCount === 0 && checkerr) {
             // this runs when we are moving  to next posture.
+            hint.html("");
+            errCount = 8;
             console.log("Done Counting");
             checkerr = false;
             backgroundMusic.pause();
@@ -429,10 +456,16 @@ function classifyPose() {
             if (currentLabel === array[indexOfCurrentPosture]) {
                 currPoseCount--;
 
+            } else {
+                if(errCount--===0){
+                    voice.play();
+                    hint.html(hints[indexOfCurrentPosture][Math.floor(Math.random()*hints[indexOfCurrentPosture].length)]);
+                    errCount = 8;
+                }
             }
 
             if (currPoseCount >= 0 && GlobalBool && BoxBool) {
-
+                
                 poseInfoDiv.html(`Current Pose: ${Postures[indexOfCurrentPosture]}`);
                 imageIndexDiv.elt.innerText=currPoseCount;
             }
