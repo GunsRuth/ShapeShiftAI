@@ -16,6 +16,7 @@ let video;
 let skeleton;
 let pose;
 let errCount = 8;
+let voice;
 
 
 let GlobalBool = true;
@@ -69,6 +70,7 @@ let flag = true;
 
 function preload() {
     sound = createAudio('SuryaNamaskara-Prod-Build/Models/Chill - Cool Down Harmony.mp3');
+    voice = createAudio("voices/voice1.wav");
 }
 
 
@@ -86,7 +88,7 @@ function setup() {
 
     const container = createDiv();
     container.style('display', 'flex');
-
+    
 
 
 
@@ -187,10 +189,11 @@ function setup() {
 
     hint.style('background-color', 'rgb(226,186,213)');
     hint.style('color', 'white');
-    hint.style('padding', '10px');
+    // hint.style('padding', '10px');
     hint.style('text-align', 'center');
     hint.style('font-size', '40px');
     hint.style('font-weight', 'bold');
+    hint.style("margin-top", "0px");
 
 }
 
@@ -455,13 +458,14 @@ function classifyPose() {
 
             } else {
                 if(errCount--===0){
+                    voice.play();
                     hint.html(hints[indexOfCurrentPosture][Math.floor(Math.random()*hints[indexOfCurrentPosture].length)]);
                     errCount = 8;
                 }
             }
 
             if (currPoseCount >= 0 && GlobalBool && BoxBool) {
-
+                
                 poseInfoDiv.html(`Current Pose: ${Postures[indexOfCurrentPosture]}`);
                 imageIndexDiv.elt.innerText=currPoseCount;
             }
